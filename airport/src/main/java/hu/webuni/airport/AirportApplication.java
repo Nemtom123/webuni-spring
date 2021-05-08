@@ -16,11 +16,12 @@ public class AirportApplication implements CommandLineRunner{
 	
 	@Autowired
 	PriceService priceService;
-	//git
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AirportApplication.class, args);
 	}
-	//GIT
+	
+	//GIT +
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println(priceService.getFinalPrice(200));
