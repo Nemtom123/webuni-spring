@@ -30,7 +30,7 @@ public class AirportTLController {
 		return "index";
 	}
 	
-	//Átküldjük az datokat aiprts oldalra
+	//Átküldjük az adatokat aiports oldalra
 	@GetMapping("/airports")
 	public String listAirports(Map<String, Object>model) {
 		model.put("airports", allAirports);
