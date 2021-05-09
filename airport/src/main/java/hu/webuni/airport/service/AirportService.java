@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.websocket.server.ServerEndpoint;
 
@@ -21,10 +22,20 @@ public class AirportService {
 	}
 	
 	public Airport save(Airport airport) {
+		checkUniqueIata(airport.getIata());
 		airports.put(airport.getId(), airport);
 		return airport;
 	}
 	
+	private void checkUniqueIata(String iata) {
+		Optional<Airport> airportWithSameIata = airports.values().stream()
+				.filter(a  -> a.getIata().equals(iata))
+				.findAny();
+		if (airportWithSameIata.isPresent())
+			throw new NonUniqueIataExeption(iata);
+	}
+			
+
 	public List<Airport> findAll(){
 		return new ArrayList<>(airports.values());
 	}
@@ -36,5 +47,13 @@ public class AirportService {
 	public void delete(long id) {
 		 airports.remove(id);
 	}
+
+	
+
+	public Airport update(Airport airport) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
